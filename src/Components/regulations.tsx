@@ -56,10 +56,12 @@ const RegulationsTable: React.FC = () => {
   return (
     <div className="container mt-4">
       {/* Header */}
-      <div className="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
-        <h1 className="h4">Regulations</h1>
-        <a className="btn btn-outline-secondary" href="/">Back</a>
-      </div>
+     <div className="d-flex justify-content-between align-items-center border-bottom pb-3">
+                 <a className="btn btn-outline-secondary" href="/">
+                    ← Regulations
+                  </a>
+                        <ConnectButton />
+                  </div>
 
       {/* Filters */}
       <div className="row mb-4">
