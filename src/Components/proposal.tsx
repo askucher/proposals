@@ -1,6 +1,7 @@
 import React from "react";
 import ProposalProcess from "./proposalProcess";
 import { marked } from "marked";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 interface Proposal {
   title: string;
@@ -62,9 +63,11 @@ We encourage all Arbitrum Delegates to vote responsibly and in the best interest
     <div className="container mt-4">
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center border-bottom pb-3">
-        <h1 className="h4">Peace DAO</h1>
-        <button className="btn btn-outline-secondary">Log In</button>
-      </div>
+            <a className="btn btn-outline-secondary" href="/">
+               ← Proposal
+             </a>
+                   <ConnectButton />
+             </div>
 
       {/* Main Content */}
       <div className="row mt-4">

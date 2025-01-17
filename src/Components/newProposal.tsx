@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { marked } from "marked";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 interface Execution {
   title: string;
@@ -74,12 +75,12 @@ const NewProposal: React.FC = () => {
   return (
     <div className="container mt-4">
       {/* Back Button */}
-      <div className="mb-3">
-        <a className="btn btn-outline-secondary" href="/">
+       <div className="d-flex justify-content-between align-items-center border-bottom pb-3">
+       <a className="btn btn-outline-secondary" href="/">
           ← New Proposal
         </a>
-      </div>
-
+              <ConnectButton />
+        </div>
       {/* Proposal Form */}
       <div className="mb-4">
         {/* Title */}
