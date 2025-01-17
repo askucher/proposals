@@ -33,7 +33,7 @@ const Component: React.FC = () => {
       down: 23,
       nonVoted: 50
     },
-    authorAvatar: "https://via.placeholder.com/40", // Replace with actual avatar URL
+    authorAvatar: "https://cdn-icons-png.flaticon.com/512/2815/2815428.png", // Replace with actual avatar URL
     category: "In Arbitrum DAO",
     timePosted: "18h ago",
     description: `
@@ -62,7 +62,7 @@ We encourage all Arbitrum Delegates to vote responsibly and in the best interest
     <div className="container mt-4">
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center border-bottom pb-3">
-        <h1 className="h4">Arbitrum DAO</h1>
+        <h1 className="h4">Peace DAO</h1>
         <button className="btn btn-outline-secondary">Log In</button>
       </div>
 
