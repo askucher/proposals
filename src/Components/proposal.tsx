@@ -1,4 +1,5 @@
 import React from "react";
+import ProposalProcess from "./proposalProcess";
 
 interface Proposal {
   title: string;
@@ -8,6 +9,11 @@ interface Proposal {
   category: string;
   timePosted: string;
   description: string;
+  votePercentages: {
+    up: number;
+    down: number;
+    nonVoted: number;
+  };
   voteOptions: string[];
   timeline: {
     created: string;
@@ -21,6 +27,11 @@ const ArbitrumDAO: React.FC = () => {
     title: "Arbitrum D.A.O. Season 3 Elections - Gaming",
     status: "Pending",
     author: "Max Lomu",
+    votePercentages: {
+      up: 27,
+      down: 23,
+      nonVoted: 50
+    },
     authorAvatar: "https://via.placeholder.com/40", // Replace with actual avatar URL
     category: "In Arbitrum DAO",
     timePosted: "18h ago",
@@ -81,35 +92,7 @@ We encourage all Arbitrum Delegates to vote responsibly and in the best interest
 
         {/* Right Panel */}
         <div className="col-md-4">
-          <div className="border p-3 rounded">
-            <h5>Cast Your Vote</h5>
-            <p className="text-muted">Voting for this proposal hasn&apos;t started yet.</p>
-            <ul className="list-group mb-3">
-              {proposal.voteOptions.map((option) => (
-                <li
-                  key={option}
-                  className="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  {option}
-                  <span className="badge bg-light text-dark">🔒</span>
-                </li>
-              ))}
-            </ul>
-            <div>
-              <h6>Timeline</h6>
-              <ul className="list-unstyled">
-                <li>
-                  <strong>Created:</strong> {proposal.timeline.created}
-                </li>
-                <li>
-                  <strong>Start:</strong> {proposal.timeline.start}
-                </li>
-                <li>
-                  <strong>End:</strong> {proposal.timeline.end}
-                </li>
-              </ul>
-            </div>
-          </div>
+        <ProposalProcess proposal={proposal} ></ProposalProcess>
         </div>
       </div>
     </div>
