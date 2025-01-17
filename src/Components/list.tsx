@@ -33,6 +33,9 @@ const Header: React.FC = () => (
       <p className="mb-0 text-muted">The official snapshot space for Hideway DEX Governance</p>
     </div>
     <div className="d-flex align-items-center">
+      <a href="/regulations" className="btn btn-outline-secondary me-2">
+        Regulations
+      </a>
       <a href="/new" className="btn btn-outline-secondary me-2">
         New Proposal
       </a>
