@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import RegulationCard from './regulation';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 interface Regulation {
   protocolIcon: string;
