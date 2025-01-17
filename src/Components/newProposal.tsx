@@ -12,7 +12,22 @@ interface Proposal {
   description: string;
   discussionLink: string;
   execution: Execution;
+  selectedRegulation: string;
+  arguments: Record<string, string>;
 }
+
+const regulations = [
+  {
+    name: "Hideway Listing",
+    method: "listToken",
+    arguments: ["address", "logo", "name", "symbol"],
+  },
+  {
+    name: "Example Regulation",
+    method: "exampleMethod",
+    arguments: ["arg1", "arg2", "arg3"],
+  },
+];
 
 const NewProposal: React.FC = () => {
   const [proposal, setProposal] = useState<Proposal>({
@@ -24,19 +39,36 @@ const NewProposal: React.FC = () => {
       date: "19/3/2024",
       type: "oSnap execution",
     },
+    selectedRegulation: "",
+    arguments: {},
   });
+
   const [editorMode, setEditorMode] = useState<"write" | "preview">("write");
 
   const renderMarkdown = (text: string) => {
     return marked(text);
   };
 
-  const handleGoBack = () => {
-    alert("Go back to the previous page."); // Replace with actual back navigation logic
-  };
-
   const handleInputChange = (field: keyof Proposal, value: string) => {
     setProposal((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleArgumentChange = (arg: string, value: string) => {
+    setProposal((prev) => ({
+      ...prev,
+      arguments: { ...prev.arguments, [arg]: value },
+    }));
+  };
+
+  const handleRegulationChange = (regulationName: string) => {
+    const regulation = regulations.find((r) => r.name === regulationName);
+    setProposal({
+      ...proposal,
+      selectedRegulation: regulationName,
+      arguments: regulation
+        ? Object.fromEntries(regulation.arguments.map((arg) => [arg, ""]))
+        : {},
+    });
   };
 
   return (
@@ -99,43 +131,42 @@ const NewProposal: React.FC = () => {
         <input
           type="text"
           className="form-control mb-3"
-          placeholder="Discussion (e.g. https://forum.example.com/proposal...)"
+          placeholder="More Information (e.g. https://forum.example.com/proposal...)"
           value={proposal.discussionLink}
           onChange={(e) => handleInputChange("discussionLink", e.target.value)}
         />
 
-        {/* Execution Section */}
-        <div>
-          <h6 className="mb-3">Execution</h6>
-          <div className="d-flex align-items-center border p-3 rounded mb-3">
-            <img
-              src="https://via.placeholder.com/40"
-              alt="Execution Icon"
-              className="me-3 rounded"
-            />
-            <div>
-              <p className="mb-0">
-                <strong>{proposal.execution.title}</strong>
-              </p>
-              <p className="mb-0 text-muted">
-                {proposal.execution.date} • {proposal.execution.type}
-              </p>
-            </div>
-          </div>
+        {/* Regulation Dropdown */}
+        <select
+          className="form-select mb-3"
+          value={proposal.selectedRegulation}
+          onChange={(e) => handleRegulationChange(e.target.value)}
+        >
+          <option value="">Select Regulation</option>
+          {regulations.map((reg) => (
+            <option key={reg.name} value={reg.name}>
+              {reg.name} - {reg.method}({reg.arguments.join(", ")})
+            </option>
+          ))}
+        </select>
 
-          {/* Execution Actions */}
-          <div className="d-flex justify-content-end">
-            <button className="btn btn-outline-secondary me-2">
-              <i className="bi bi-camera"></i>
-            </button>
-            <button className="btn btn-outline-secondary me-2">
-              <i className="bi bi-image"></i>
-            </button>
-            <button className="btn btn-outline-secondary">
-              <i className="bi bi-code-slash"></i>
-            </button>
+        {/* Arguments Form */}
+        {proposal.selectedRegulation && (
+          <div className="mb-3">
+            <h5>Fill in Arguments:</h5>
+            {Object.keys(proposal.arguments).map((arg) => (
+              <div key={arg} className="mb-2">
+                <label className="form-label">{arg}:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={proposal.arguments[arg]}
+                  onChange={(e) => handleArgumentChange(arg, e.target.value)}
+                />
+              </div>
+            ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
