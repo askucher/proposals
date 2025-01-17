@@ -8,6 +8,31 @@ interface Proposal {
   daysLeft: number;
 }
 
+const ProposalCard: React.FC<Proposal> = ({ title, id, author, daysLeft }) => (
+  <div className="border-bottom pb-3 mb-3">
+    <h5 className="mb-1">{title}</h5>
+    <p className="mb-0 text-muted">
+      #{id} by {author} • {daysLeft} days left
+    </p>
+  </div>
+);
+
+const Header: React.FC = () => (
+  <div className="d-flex justify-content-between align-items-center border-bottom pb-3">
+    <div>
+      <h1 className="h4">Arbitrum DAO</h1>
+      <p className="mb-0 text-muted">349 proposals • 5.5m votes • 317k followers</p>
+      <p className="mb-0 text-muted">The official snapshot space for the Arbitrum DAO</p>
+    </div>
+    <div className="d-flex align-items-center">
+      <a href="/new" className="btn btn-outline-secondary me-2">
+        New Proposal
+      </a>
+      <ConnectButton showBalance={false} />
+    </div>
+  </div>
+);
+
 const List: React.FC = () => {
   const proposals: Proposal[] = [
     { title: "Arbitrum D.A.O. Season 3 Elections - Gaming", id: "e52ab", author: "Max Lomu", daysLeft: 7 },
@@ -20,27 +45,18 @@ const List: React.FC = () => {
   return (
     <div className="container mt-4">
       {/* Header */}
-      <div className="d-flex justify-content-between align-items-center border-bottom pb-3">
-        <div>
-          <h1 className="h4">Arbitrum DAO</h1>
-          <p className="mb-0 text-muted">349 proposals • 5.5m votes • 317k followers</p>
-          <p className="mb-0 text-muted">The official snapshot space for the Arbitrum DAO</p>
-        </div>
-        <div>
-        <a href="/new" className="btn btn-outline-secondary me-2">New Proposal</a>
-        <ConnectButton showBalance={false} />
-        </div>
-      </div>
+      <Header />
 
       {/* Proposals */}
       <div className="mt-4">
-        {proposals.map((proposal, index) => (
-          <div key={index} className="border-bottom pb-3 mb-3">
-            <h5 className="mb-1">{proposal.title}</h5>
-            <p className="mb-0 text-muted">
-              #{proposal.id} by {proposal.author} • {proposal.daysLeft} days left
-            </p>
-          </div>
+        {proposals.map((proposal) => (
+          <ProposalCard
+            key={proposal.id}
+            title={proposal.title}
+            id={proposal.id}
+            author={proposal.author}
+            daysLeft={proposal.daysLeft}
+          />
         ))}
       </div>
     </div>

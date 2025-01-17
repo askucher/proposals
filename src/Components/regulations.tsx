@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import RegulationCard from './regulation';
 
 interface Regulation {
   protocolIcon: string;
@@ -56,8 +57,8 @@ const RegulationsTable: React.FC = () => {
     <div className="container mt-4">
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
-        <h1 className="h4">Regulations Table</h1>
-        <button className="btn btn-outline-secondary">Go Back</button>
+        <h1 className="h4">Regulations</h1>
+        <a className="btn btn-outline-secondary" href="/">Back</a>
       </div>
 
       {/* Filters */}
@@ -97,36 +98,21 @@ const RegulationsTable: React.FC = () => {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="table-responsive">
-        <table className="table table-bordered table-striped">
-          <thead className="table-dark">
-            <tr>
-              <th>Protocol Icon</th>
-              <th>Description</th>
-              <th>Smart Contract Method with Arguments</th>
-              <th>Date Applied</th>
-              <th>Tx Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map((row) => (
-              <tr key={row.txLink}>
-                <td>
-                  <img src={row.protocolIcon} alt="Icon" width="30" height="30" />
-                </td>
-                <td>{row.description}</td>
-                <td>{row.smartContractMethod}</td>
-                <td>{row.dateApplied}</td>
-                <td>
-                  <a href={row.txLink} target="_blank" rel="noopener noreferrer">
-                    View Tx
-                  </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Cards */}
+      <div className="row">
+        {filteredData.map((row) => (
+          <div className="col-md-6 mb-4" key={row.txLink}>
+            <RegulationCard
+              logo={row.protocolIcon}
+              name={row.protocol}
+              description={row.description}
+              fullDescription={`Applied on: ${row.dateApplied}`}
+              methodArguments={row.smartContractMethod}
+              txId={row.txLink}
+              mode="extended"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

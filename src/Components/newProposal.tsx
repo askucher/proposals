@@ -43,9 +43,9 @@ const NewProposal: React.FC = () => {
     <div className="container mt-4">
       {/* Back Button */}
       <div className="mb-3">
-        <button className="btn btn-outline-secondary" onClick={handleGoBack}>
+        <a className="btn btn-outline-secondary" href="/">
           ← New Proposal
-        </button>
+        </a>
       </div>
 
       {/* Proposal Form */}
