@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import marked from "marked";
+import { marked } from "marked";
 
 interface Execution {
   title: string;
@@ -28,8 +28,7 @@ const NewProposal: React.FC = () => {
   const [editorMode, setEditorMode] = useState<"write" | "preview">("write");
 
   const renderMarkdown = (text: string) => {
-    //return marked(text);
-    return text;
+    return marked(text);
   };
 
   const handleGoBack = () => {

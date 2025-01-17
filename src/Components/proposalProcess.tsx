@@ -1,4 +1,5 @@
 import React from "react";
+import RegulationCard from "./regulation";
 
 interface Proposal {
   title: string;
@@ -101,16 +102,7 @@ const RightPanel: React.FC<RightPanelProps> = ({ proposal }) => {
           <span className="badge bg-info text-dark">Connected Regulation</span>
         </h5>
         <div className="d-flex align-items-center mt-3">
-          <img
-            src="/path-to-protocol-icon.png"
-            alt="Protocol Icon"
-            className="me-2"
-            width="24"
-            height="24"
-          />
-          <p className="mb-0">
-            This proposal aligns with the latest protocols ensuring compliance and regulation.
-          </p>
+          <RegulationCard logo="https://upload.wikimedia.org/wikipedia/commons/5/53/Wikimedia-logo.png" name="Hideway" description="Add TEST token"></RegulationCard>
         </div>
       </div>
     </div>

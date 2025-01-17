@@ -1,5 +1,6 @@
 import React from "react";
 import ProposalProcess from "./proposalProcess";
+import { marked } from "marked";
 
 interface Proposal {
   title: string;
@@ -22,7 +23,7 @@ interface Proposal {
   };
 }
 
-const ArbitrumDAO: React.FC = () => {
+const Component: React.FC = () => {
   const proposal: Proposal = {
     title: "Arbitrum D.A.O. Season 3 Elections - Gaming",
     status: "Pending",
@@ -54,7 +55,7 @@ We encourage all Arbitrum Delegates to vote responsibly and in the best interest
   };
 
   const renderMarkdown = (text: string) => {
-    return { __html: text };
+    return { __html: marked(text) };
   };
 
   return (
@@ -99,4 +100,4 @@ We encourage all Arbitrum Delegates to vote responsibly and in the best interest
   );
 };
 
-export default ArbitrumDAO;
+export default Component;
